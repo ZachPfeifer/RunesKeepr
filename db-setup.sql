@@ -28,7 +28,7 @@
 --     isPrivate TINYINT,
 --     views INT DEFAULT 0,
 --     shares INT DEFAULT 0,
---     items INT DEFAULT 0,
+--     banked INT DEFAULT 0,
 --     INDEX userId (userId),
 --     FOREIGN KEY (userId)
 --         REFERENCES users(id)
@@ -60,7 +60,7 @@
 -- )
 
 
--- -- USE THIS LINE FOR GET ITEMS BY BANKID
+-- -- -- USE THIS LINE FOR GET ITEMS BY BANKID
 -- SELECT * FROM bankitems vk
 -- INNER JOIN items k ON k.id = vk.itemId 
 -- WHERE (bankId = @bankId AND vk.userId = @userId) 
