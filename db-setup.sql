@@ -7,7 +7,7 @@
 --     UNIQUE KEY email (email)
 -- );
 
--- CREATE TABLE vaults (
+-- CREATE TABLE banks (
 --     id int NOT NULL AUTO_INCREMENT,
 --     name VARCHAR(255) NOT NULL,
 --     description VARCHAR(255) NOT NULL,
@@ -19,7 +19,7 @@
 --     PRIMARY KEY (id)
 -- );
 
--- CREATE TABLE keeps (
+-- CREATE TABLE items (
 --     id int NOT NULL AUTO_INCREMENT,
 --     name VARCHAR(255) NOT NULL,
 --     description VARCHAR(255) NOT NULL,
@@ -28,7 +28,7 @@
 --     isPrivate TINYINT,
 --     views INT DEFAULT 0,
 --     shares INT DEFAULT 0,
---     keeps INT DEFAULT 0,
+--     items INT DEFAULT 0,
 --     INDEX userId (userId),
 --     FOREIGN KEY (userId)
 --         REFERENCES users(id)
@@ -36,39 +36,39 @@
 --     PRIMARY KEY (id)
 -- );
 
--- CREATE TABLE vaultkeeps (
+-- CREATE TABLE bankitems (
 --     id int NOT NULL AUTO_INCREMENT,
---     vaultId int NOT NULL,
---     keepId int NOT NULL,
+--     bankId int NOT NULL,
+--     itemId int NOT NULL,
 --     userId VARCHAR(255) NOT NULL,
 
 --     PRIMARY KEY (id),
---     INDEX (vaultId, keepId),
+--     INDEX (bankId, itemId),
 --     INDEX (userId),
 
 --     FOREIGN KEY (userId)
 --         REFERENCES users(id)
 --         ON DELETE CASCADE,
 
---     FOREIGN KEY (vaultId)
---         REFERENCES vaults(id)
+--     FOREIGN KEY (bankId)
+--         REFERENCES banks(id)
 --         ON DELETE CASCADE,
 
---     FOREIGN KEY (keepId)
---         REFERENCES keeps(id)
+--     FOREIGN KEY (itemId)
+--         REFERENCES items(id)
 --         ON DELETE CASCADE
 -- )
 
 
--- -- USE THIS LINE FOR GET KEEPS BY VAULTID
--- SELECT * FROM vaultkeeps vk
--- INNER JOIN keeps k ON k.id = vk.keepId 
--- WHERE (vaultId = @vaultId AND vk.userId = @userId) 
+-- -- USE THIS LINE FOR GET ITEMS BY BANKID
+-- SELECT * FROM bankitems vk
+-- INNER JOIN items k ON k.id = vk.itemId 
+-- WHERE (bankId = @bankId AND vk.userId = @userId) 
 
 
 
 -- -- USE THIS TO CLEAN OUT YOUR DATABASE
--- DROP TABLE IF EXISTS vaultkeeps;
--- DROP TABLE IF EXISTS vaults;
--- DROP TABLE IF EXISTS keeps;
+-- DROP TABLE IF EXISTS bankitems;
+-- DROP TABLE IF EXISTS banks;
+-- DROP TABLE IF EXISTS items;
 -- DROP TABLE IF EXISTS users;
