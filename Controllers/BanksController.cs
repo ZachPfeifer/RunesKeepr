@@ -8,7 +8,7 @@ using RunesKeepr.Services;
 namespace RunesKeepr.Controllers
 {
   [ApiController]
-  [Route("api/[controller")]
+  [Route("api/[controller]")]
   public class BanksController : ControllerBase
   {
     public readonly BanksService _bs;

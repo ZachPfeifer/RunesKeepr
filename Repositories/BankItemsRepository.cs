@@ -17,9 +17,9 @@ namespace RunesKeepr.Repositories
     public IEnumerable<Item> Get(int bankId, string userId)
     {
       string sql = @"
-      SELECT * FROM bankitems vk
-      INNER JOIN items k ON k.id = vk.itemId 
-      WHERE (bankId = @bankId AND vk.userId = @userId)";
+      SELECT * FROM bankitems bi
+      INNER JOIN items i ON k.id = bi.itemId 
+      WHERE (bankId = @bankId AND bi.userId = @userId)";
       return _db.Query<Item>(sql, new { bankId, userId });
     }
     public BankItem Check(int bankId, int itemId)

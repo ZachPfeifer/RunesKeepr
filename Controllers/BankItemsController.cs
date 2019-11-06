@@ -12,10 +12,10 @@ namespace RunesKeepr.Controllers
   [Route("api/[controller]")]
   public class BankItemsController : ControllerBase
   {
-    private readonly BankItemsService _vs;
-    public BankItemsController(BankItemsService vs)
+    private readonly BankItemsService _bis;
+    public BankItemsController(BankItemsService bis)
     {
-      _vs = vs;
+      _bis = bis;
     }
 
     [Authorize]
@@ -25,7 +25,7 @@ namespace RunesKeepr.Controllers
       try
       {
         string userId = HttpContext.User.FindFirstValue("Id");
-        return Ok(_vs.Get(bankId, userId));
+        return Ok(_bis.Get(bankId, userId));
       }
       catch (Exception e)
       {
@@ -39,7 +39,7 @@ namespace RunesKeepr.Controllers
       try
       {
         string userId = HttpContext.User.FindFirstValue("Id");
-        return Ok(_vs.Create(bankItem, userId));
+        return Ok(_bis.Create(bankItem, userId));
       }
       catch (Exception e)
       {
@@ -52,7 +52,7 @@ namespace RunesKeepr.Controllers
     {
       try
       {
-        return Ok(_vs.Remove(bankItem));
+        return Ok(_bis.Remove(bankItem));
       }
       catch (Exception e)
       {
