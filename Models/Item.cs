@@ -12,7 +12,7 @@ namespace RunesKeepr.Models
     public string Name { get; set; }
     public string Description { get; set; }
     public int Img { get; set; }
-    public bool IsPrivate { get; set; }
+    public bool isPrivate { get; set; }
     public int Views { get; set; }
     public int Shares { get; set; }
     public int Banked { get; set; }
