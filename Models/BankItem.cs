@@ -3,10 +3,10 @@ using RunesKeepr.Interfaces;
 
 namespace RunesKeepr.Models
 {
-  public class ItemBank : IItemBank
+  public class BankItem : IBankItem
   {
     [Required]
-    public string Id { get; set; }
+    public int Id { get; set; }
     public int BankId { get; set; }
     public int ItemId { get; set; }
     [Required]
