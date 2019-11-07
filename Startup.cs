@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using Keepr.Repositories;
-using Keepr.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,9 +13,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
+using RunesKeepr.Repositories;
+using RunesKeepr.Services;
 // using MySql.Data.MySqlClient;
 
-namespace Keepr
+namespace RunesKeepr
 {
   public class Startup
   {
@@ -38,22 +38,22 @@ namespace Keepr
             options.LoginPath = "/Account/Login";
             options.Events.OnRedirectToLogin = (context) =>
                     {
-                  context.Response.StatusCode = 401;
-                  return Task.CompletedTask;
-                };
+                      context.Response.StatusCode = 401;
+                      return Task.CompletedTask;
+                    };
           });
       services.AddCors(options =>
       {
         options.AddPolicy("CorsDevPolicy", builder =>
               {
-            builder
-                      .WithOrigins(new string[]{
+                builder
+                          .WithOrigins(new string[]{
                             "http://localhost:8080"
-                  })
-                      .AllowAnyMethod()
-                      .AllowAnyHeader()
-                      .AllowCredentials();
-          });
+                      })
+                          .AllowAnyMethod()
+                          .AllowAnyHeader()
+                          .AllowCredentials();
+              });
       });
 
       services.AddControllers();
@@ -64,6 +64,15 @@ namespace Keepr
       //NOTE REGISTER SERVICES
       services.AddTransient<AccountService>();
       services.AddTransient<AccountRepository>();
+      //Items
+      services.AddTransient<ItemsService>();
+      services.AddTransient<ItemsRepository>();
+      //Banks 
+      services.AddTransient<BanksService>();
+      services.AddTransient<BanksRepository>();
+      //BankItems
+      services.AddTransient<BankItemsService>();
+      services.AddTransient<BankItemsRepository>();
     }
 
     private IDbConnection CreateDbConnection()
